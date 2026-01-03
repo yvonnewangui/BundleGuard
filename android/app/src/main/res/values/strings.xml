@@ -27,6 +27,8 @@
     <string name="permission_usage_desc">Required to see which apps use your data. This lets BundleGuard track data usage per app.</string>
     <string name="permission_notification_title">Notifications</string>
     <string name="permission_notification_desc">Get alerts about unusual data usage spikes and sync status.</string>
+    <string name="permission_sms_title">SMS Access</string>
+    <string name="permission_sms_desc">Auto-detect bundle purchases from Safaricom, Airtel, and Telkom SMS messages.</string>
     <string name="btn_grant_permission">Grant Permission</string>
     <string name="btn_enable">Enable</string>
     <string name="btn_skip">Skip for now</string>

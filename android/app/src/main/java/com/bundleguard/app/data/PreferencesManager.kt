@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "bundleguard_prefs")
@@ -20,6 +21,8 @@ class PreferencesManager(private val context: Context) {
         private val KEY_SYNC_INTERVAL_MINUTES = intPreferencesKey("sync_interval_minutes")
         private val KEY_ONBOARDING_COMPLETE = booleanPreferencesKey("onboarding_complete")
         private val KEY_DASHBOARD_URL = stringPreferencesKey("dashboard_url")
+        private val KEY_PENDING_BUNDLES = stringSetPreferencesKey("pending_bundles")
+        private val KEY_LAST_SMS_SCAN_TIME = longPreferencesKey("last_sms_scan_time")
     }
     
     val deviceToken: Flow<String?> = context.dataStore.data.map { it[KEY_DEVICE_TOKEN] }
@@ -67,6 +70,45 @@ class PreferencesManager(private val context: Context) {
         context.dataStore.edit { prefs ->
             prefs[KEY_DASHBOARD_URL] = url
         }
+    }
+    
+    // Pending bundles management
+    val pendingBundles: Flow<Set<String>> = context.dataStore.data.map { 
+        it[KEY_PENDING_BUNDLES] ?: emptySet() 
+    }
+    
+    val lastSmsScanTime: Flow<Long> = context.dataStore.data.map { 
+        it[KEY_LAST_SMS_SCAN_TIME] ?: 0L 
+    }
+    
+    suspend fun addPendingBundle(bundleJson: String) {
+        context.dataStore.edit { prefs ->
+            val current = prefs[KEY_PENDING_BUNDLES] ?: emptySet()
+            prefs[KEY_PENDING_BUNDLES] = current + bundleJson
+        }
+    }
+    
+    suspend fun removePendingBundle(bundleJson: String) {
+        context.dataStore.edit { prefs ->
+            val current = prefs[KEY_PENDING_BUNDLES] ?: emptySet()
+            prefs[KEY_PENDING_BUNDLES] = current - bundleJson
+        }
+    }
+    
+    suspend fun clearPendingBundles() {
+        context.dataStore.edit { prefs ->
+            prefs[KEY_PENDING_BUNDLES] = emptySet()
+        }
+    }
+    
+    suspend fun setLastSmsScanTime(time: Long) {
+        context.dataStore.edit { prefs ->
+            prefs[KEY_LAST_SMS_SCAN_TIME] = time
+        }
+    }
+    
+    suspend fun getLastSmsScanTimeOnce(): Long {
+        return context.dataStore.data.first()[KEY_LAST_SMS_SCAN_TIME] ?: 0L
     }
     
     suspend fun clearAll() {

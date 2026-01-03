@@ -219,6 +219,102 @@
 
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- SMS Permission Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSmsPermission"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/divider"
+            app:layout_constraintTop_toBottomOf="@id/cardNotificationPermission"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iconSms"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_sms"
+                    android:background="@drawable/icon_background_green"
+                    android:padding="12dp"
+                    app:tint="@color/success"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iconSmsCheck"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_check_circle"
+                    app:tint="@color/primary"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="@id/iconSms"
+                    app:layout_constraintEnd_toEndOf="@id/iconSms"
+                    android:translationX="4dp"
+                    android:translationY="-4dp" />
+
+                <TextView
+                    android:id="@+id/textSmsTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/permission_sms_title"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintTop_toTopOf="@id/iconSms"
+                    app:layout_constraintStart_toEndOf="@id/iconSms"
+                    app:layout_constraintEnd_toStartOf="@id/btnSmsPermission" />
+
+                <TextView
+                    android:id="@+id/textSmsDesc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/permission_sms_desc"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@id/textSmsTitle"
+                    app:layout_constraintStart_toEndOf="@id/iconSms"
+                    app:layout_constraintEnd_toStartOf="@id/btnSmsPermission" />
+
+                <TextView
+                    android:id="@+id/textSmsRecommended"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recommended"
+                    android:textSize="11sp"
+                    android:textColor="@color/success"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@id/textSmsDesc"
+                    app:layout_constraintStart_toEndOf="@id/iconSms" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSmsPermission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/btn_enable"
+                    android:textSize="12sp"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    app:cornerRadius="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
         <!-- Buttons -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"
@@ -231,7 +327,7 @@
             android:enabled="false"
             android:alpha="0.5"
             android:layout_marginTop="40dp"
-            app:layout_constraintTop_toBottomOf="@id/cardNotificationPermission"
+            app:layout_constraintTop_toBottomOf="@id/cardSmsPermission"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

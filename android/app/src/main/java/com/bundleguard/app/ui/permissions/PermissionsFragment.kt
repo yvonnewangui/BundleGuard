@@ -1,12 +1,14 @@
 package com.bundleguard.app.ui.permissions
 
 import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,6 +28,12 @@ class PermissionsFragment : Fragment() {
     private val notificationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
+        updatePermissionStates()
+    }
+    
+    private val smsPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
         updatePermissionStates()
     }
     
@@ -63,6 +71,13 @@ class PermissionsFragment : Fragment() {
             }
         }
         
+        binding.btnSmsPermission.setOnClickListener {
+            smsPermissionLauncher.launch(arrayOf(
+                Manifest.permission.RECEIVE_SMS,
+                Manifest.permission.READ_SMS
+            ))
+        }
+        
         binding.btnContinue.setOnClickListener {
             lifecycleScope.launch {
                 preferencesManager.setOnboardingComplete(true)
@@ -81,6 +96,7 @@ class PermissionsFragment : Fragment() {
     private fun updatePermissionStates() {
         val hasUsageAccess = PermissionHelper.hasUsageAccessPermission(requireContext())
         val hasNotification = PermissionHelper.hasNotificationPermission(requireContext())
+        val hasSmsPermission = hasSmsPermission()
         
         // Update usage access state
         binding.iconUsageCheck.visibility = if (hasUsageAccess) View.VISIBLE else View.GONE
@@ -92,9 +108,21 @@ class PermissionsFragment : Fragment() {
         binding.btnNotificationPermission.text = if (hasNotification) "Granted" else "Grant"
         binding.btnNotificationPermission.isEnabled = !hasNotification
         
+        // Update SMS state
+        binding.iconSmsCheck.visibility = if (hasSmsPermission) View.VISIBLE else View.GONE
+        binding.btnSmsPermission.text = if (hasSmsPermission) "Enabled" else "Enable"
+        binding.btnSmsPermission.isEnabled = !hasSmsPermission
+        
         // Enable continue button only if usage access is granted
         binding.btnContinue.isEnabled = hasUsageAccess
         binding.btnContinue.alpha = if (hasUsageAccess) 1f else 0.5f
+    }
+    
+    private fun hasSmsPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECEIVE_SMS) == 
+            PackageManager.PERMISSION_GRANTED &&
+            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_SMS) == 
+            PackageManager.PERMISSION_GRANTED
     }
     
     override fun onDestroyView() {
