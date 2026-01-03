@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#16A34A</color>
+    <color name="primary_dark">#15803D</color>
+    <color name="primary_light">#22C55E</color>
+    <color name="accent">#F97316</color>
+    
+    <color name="background">#FAFAFA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="error">#EF4444</color>
+    
+    <color name="text_primary">#111827</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_hint">#9CA3AF</color>
+    
+    <color name="mobile_data">#F97316</color>
+    <color name="wifi_data">#3B82F6</color>
+    
+    <color name="status_on">#22C55E</color>
+    <color name="status_off">#EF4444</color>
+    
+    <color name="divider">#E5E7EB</color>
+    <color name="card_background">#FFFFFF</color>
+</resources>

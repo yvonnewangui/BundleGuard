@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/permissions_title"
+            android:textSize="24sp"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/permissions_subtitle"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/textTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Usage Access Permission Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardUsagePermission"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/divider"
+            app:layout_constraintTop_toBottomOf="@id/textSubtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iconUsage"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_usage_access"
+                    android:background="@drawable/icon_background_primary"
+                    android:padding="12dp"
+                    app:tint="@color/primary"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iconUsageCheck"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_check_circle"
+                    app:tint="@color/primary"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="@id/iconUsage"
+                    app:layout_constraintEnd_toEndOf="@id/iconUsage"
+                    android:translationX="4dp"
+                    android:translationY="-4dp" />
+
+                <TextView
+                    android:id="@+id/textUsageTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/permission_usage_title"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintTop_toTopOf="@id/iconUsage"
+                    app:layout_constraintStart_toEndOf="@id/iconUsage"
+                    app:layout_constraintEnd_toStartOf="@id/btnUsagePermission" />
+
+                <TextView
+                    android:id="@+id/textUsageDesc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/permission_usage_desc"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@id/textUsageTitle"
+                    app:layout_constraintStart_toEndOf="@id/iconUsage"
+                    app:layout_constraintEnd_toStartOf="@id/btnUsagePermission" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnUsagePermission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/btn_grant_permission"
+                    android:textSize="12sp"
+                    app:cornerRadius="20dp"
+                    app:backgroundTint="@color/primary"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Notification Permission Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardNotificationPermission"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/divider"
+            app:layout_constraintTop_toBottomOf="@id/cardUsagePermission"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iconNotification"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_notification"
+                    android:background="@drawable/icon_background_secondary"
+                    android:padding="12dp"
+                    app:tint="@color/accent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iconNotificationCheck"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_check_circle"
+                    app:tint="@color/primary"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="@id/iconNotification"
+                    app:layout_constraintEnd_toEndOf="@id/iconNotification"
+                    android:translationX="4dp"
+                    android:translationY="-4dp" />
+
+                <TextView
+                    android:id="@+id/textNotificationTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/permission_notification_title"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintTop_toTopOf="@id/iconNotification"
+                    app:layout_constraintStart_toEndOf="@id/iconNotification"
+                    app:layout_constraintEnd_toStartOf="@id/btnNotificationPermission" />
+
+                <TextView
+                    android:id="@+id/textNotificationDesc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/permission_notification_desc"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@id/textNotificationTitle"
+                    app:layout_constraintStart_toEndOf="@id/iconNotification"
+                    app:layout_constraintEnd_toStartOf="@id/btnNotificationPermission" />
+
+                <TextView
+                    android:id="@+id/textNotificationOptional"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Optional"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_hint"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@id/textNotificationDesc"
+                    app:layout_constraintStart_toEndOf="@id/iconNotification" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNotificationPermission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/btn_grant_permission"
+                    android:textSize="12sp"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    app:cornerRadius="20dp"
+                    app:strokeColor="@color/primary"
+                    android:textColor="@color/primary"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Buttons -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinue"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:text="@string/btn_continue"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
+            app:backgroundTint="@color/primary"
+            android:enabled="false"
+            android:alpha="0.5"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toBottomOf="@id/cardNotificationPermission"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/btn_skip"
+            android:textSize="14sp"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/btnContinue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
